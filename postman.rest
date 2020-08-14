@@ -1,0 +1,28 @@
+POST http://127.0.0.1:8000/api/auth/signup
+Content-Type: application/json
+X-Requested-With: XMLHttpRequest
+
+{
+    "name": "Jack Manamela",
+    "email": "manomoic@gmail.com",
+    "password": "123456789",
+    "password_confirmation": "123456789"
+}
+
+###
+POST http://127.0.0.1:8000/api/auth/login
+Content-Type: application/json
+X-Requested-With: XMLHttpRequest
+
+{
+    "email": "manomoic@gmail.com",
+    "password": "123456789",
+    "remember_me": true
+}
+
+###
+GET http://127.0.0.1:8000/api/auth/user
+Authorization: Bearer load_access_token_key
+
+###
+GET https://pokeapi.co/api/v2/pokemon?limit=1
