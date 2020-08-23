@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', [
+            'requestPokenApi' => collect(Http::get('https://pokeapi.co/api/v2/pokemon?limit=21')->json()['results'])
+        ]);
+    }
+
+    public function show($id) {
+        return view('show', [
+            'singleRestPokemon' => collect(Http::get("https://pokeapi.co/api/v2/pokemon/".$id."/")->json())
+        ]);
     }
 }
